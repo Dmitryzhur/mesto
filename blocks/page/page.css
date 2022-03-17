@@ -1,9 +1,10 @@
-.root {
+.page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   min-width: 320px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0;
   font-family: 'Inter', 'arial', sans-serif;
