@@ -1,0 +1,22 @@
+.elements {
+
+  /*убрать лишнее*/
+
+
+  display: flex;
+  max-width: 880px;
+  width: 100vw;
+  padding: 0;
+  margin: 50px auto 0 auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 17px 20px;
+}
+
+
+@media screen and (max-width: 640px) {
+  .elements {
+    display: flex;
+  }
+}

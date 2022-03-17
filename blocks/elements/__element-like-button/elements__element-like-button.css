@@ -1,0 +1,14 @@
+.elements__element-like-button.css {
+
+  background-image: url(../../../images/edit-button.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: auto;
+  
+  /*сменить на норм*/
+
+  width: 24px;
+  height: 24px;
+  color: black;
+  border: 10px solid red;
+}
