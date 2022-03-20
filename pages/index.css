@@ -1,3 +1,5 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
 @import url(../blocks/page/page.css);
 @import url(../blocks/content/content.css);
 @import url(../blocks/header/header.css);
@@ -12,7 +14,7 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/botton/botton.css);
 @import url(../blocks/elements/elements.css);
-@import url(../blocks/elements/__element-block/elements_element-block.css);
+@import url(../blocks/elements/__element-block/elements__element-block.css);
 @import url(../blocks/elements/__element-img/elements__element-img.css);
 @import url(../blocks/elements/__element-like-button/elements__element-like-button.css);
 @import url(../blocks/elements/__element-title/elements__element-title.css);

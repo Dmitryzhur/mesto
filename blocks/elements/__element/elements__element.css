@@ -1,5 +1,9 @@
 .elements__element {
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
-  border-radius: 5%;
-  /*overflow: hidden;*/
+  border-radius: 4%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }

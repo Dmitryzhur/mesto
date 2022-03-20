@@ -1,22 +1,26 @@
 .elements {
-
-  /*убрать лишнее*/
-
-
-  display: flex;
-  max-width: 880px;
-  width: 100vw;
+  max-width: 1184px;
   padding: 0;
   margin: 50px auto 0 auto;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 17px 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 282px);
+  grid-template-rows: repeat(2, 361px);
+  grid-gap: 20px 17px;
 }
 
-
+@media screen and (max-width: 930px) {
+  .elements {
+    width: 581px;
+    grid-template-columns: repeat(2, 282px);
+    grid-template-rows: repeat(3, 361px);
+  }
+}
 @media screen and (max-width: 640px) {
   .elements {
-    display: flex;
+    width: 282px;
+    margin: 20px auto 0 auto;
+    grid-template-columns: repeat(1, 282px);
+    grid-template-rows: repeat(6, 361px);
   }
 }
