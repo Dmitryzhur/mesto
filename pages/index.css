@@ -19,3 +19,5 @@
 @import url(../blocks/elements/__element-like-button/elements__element-like-button.css);
 @import url(../blocks/elements/__element-title/elements__element-title.css);
 @import url(../blocks/elements/__element/elements__element.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
