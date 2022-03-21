@@ -1,11 +1,8 @@
 .popup {
-  display: flex;
+  display: none;
   position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: 2;
   font-family: "Inter", sans-serif;
-  visibility: hidden;
-  opacity: 0;
-  transition: visibility .5s, opacity .5s ease-out;
 }
