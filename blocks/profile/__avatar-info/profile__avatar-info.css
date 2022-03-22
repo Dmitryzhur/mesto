@@ -1,0 +1,15 @@
+.profile__avatar-info {
+  padding: 0;
+  margin: 0;
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media screen and (max-width: 640px) {
+  .profile__avatar-info {
+    flex-direction: column;
+    gap: 22px;
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mesto: 3 проектная работа на Яндекс Практикуме">
+  <meta name="keywords" content="html, css">
+  <meta name="author" content="Дмитрий Журавлев">
+</head>
+
+<body>
+
+  <div class="popup popup_type_edit">
+    <div class="popup__container">
+        <button type="button" class="popup__close-button button" id="close-button"></button>
+        <h2 class="popup__heading">Редактировать профиль</h2>
+        <form class="popup__admin" name="popup-form">
+            <input class="popup__item" type="text" id="input__name" name="input__name" placeholder="Имя" required>
+            <input class="popup__item" type="text" id="input__about" name="input__about" placeholder="О себе" required>
+            <button type="submit" class="popup__button button">Сохранить</button>
+        </form>
+    </div>
+</div>
+
+  <div class="page">
+    <header class="header">
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип">
+    </header>
+
+    <main class="content">
+      <section class="profile">
+        <div class="profile__avatar-info">
+          <img class="profile__avatar" src="./images/avatar.png" alt="Аватар">
+          <div class="profile__info">
+            <h1 class="profile__title">Дима Журавлев</h1>
+            <button type="button" class="profile__edit-button button"></button>
+            <p class="profile__subtitle">Побеждаю лень (и путешествую)</p>
+          </div>
+        </div>
+        <button type="button" class="profile__add-button button"></button>
+      </section>
+
+      <section class="elements">
+        <div class="elements__element">
+          <img class="elements__element-img" src="./images/photo-ocean.jpg" alt="Океан">
+          <div class="elements__element-block">
+            <h3 class="elements__element-title">Тихий океан</h3>
+            <button type="button" class="elements__element-like-button button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__element-img" src="./images/photo-wall.jpg" alt="Стена">
+          <div class="elements__element-block">
+            <h3 class="elements__element-title">Великая Китайская стена</h3>
+            <button type="button" class="elements__element-like-button button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__element-img" src="./images/photo-mountain.jpg" alt="Горы">
+          <div class="elements__element-block">
+            <h3 class="elements__element-title">Горы Алтая</h3>
+            <button type="button" class="elements__element-like-button button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__element-img" src="./images/photo-house.jpg" alt="Дом">
+          <div class="elements__element-block">
+            <h3 class="elements__element-title">Дом на Урале</h3>
+            <button type="button" class="elements__element-like-button button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__element-img" src="./images/photo-street.jpg" alt="Улица">
+          <div class="elements__element-block">
+            <h3 class="elements__element-title">Ночной Тагил</h3>
+            <button type="button" class="elements__element-like-button button"></button>
+          </div>
+        </div>
+
+        <div class="elements__element">
+          <img class="elements__element-img" src="./images/photo-lighthouse.jpg" alt="Маяк">
+          <div class="elements__element-block">
+            <h3 class="elements__element-title">Маяк</h3>
+            <button type="button" class="elements__element-like-button button"></button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022. Mesto Russia</p>
+    </footer>
+  </div>
+  <script src="./pages/index.js"></script>
+</body>
+</html>
