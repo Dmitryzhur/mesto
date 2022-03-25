@@ -2,25 +2,26 @@
   max-width: 1184px;
   padding: 0;
   margin: 50px auto 0 auto;
-
+  width: 100%;
+  align-self: center;
   display: grid;
-  grid-template-columns: repeat(3, 282px);
-  grid-template-rows: repeat(2, 361px);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-gap: 20px 17px;
 }
 
 @media screen and (max-width: 930px) {
   .elements {
     width: 581px;
-    grid-template-columns: repeat(2, 282px);
-    grid-template-rows: repeat(3, 361px);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
   }
 }
 @media screen and (max-width: 640px) {
   .elements {
     width: 282px;
-    margin: 20px auto 0 auto;
-    grid-template-columns: repeat(1, 282px);
-    grid-template-rows: repeat(6, 361px);
+    margin: 20px 0 0 0;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
   }
 }
