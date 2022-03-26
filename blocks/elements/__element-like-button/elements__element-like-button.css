@@ -8,3 +8,7 @@
   height: 19px;
   border: none;
 }
+
+.elements__element-like-button:hover {
+  opacity: .5;
+}

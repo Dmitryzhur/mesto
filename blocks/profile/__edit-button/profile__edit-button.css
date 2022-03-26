@@ -9,6 +9,10 @@
   border: 1px solid #fff;
 }
 
+.profile__edit-button:hover {
+  opacity: .6;
+}
+
 @media screen and (max-width: 640px) {
   .profile__edit-button {
     height: 18px;

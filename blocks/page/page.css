@@ -3,7 +3,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  min-width: 320px;
   margin: 0 auto;
   padding: 0;
   font-family: 'Inter', 'arial', sans-serif;
@@ -12,8 +11,4 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-ul {
-  list-style-type: none;
 }
