@@ -8,6 +8,7 @@
   box-sizing: border-box;
   margin: 0;
   position: relative;
+
 }
 
 .profile__add-button:hover {
@@ -16,12 +17,6 @@
 
 @media screen and (max-width: 930px) {
   .profile__add-button {
-    width: 95%;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .profile__add-button {
-    width: 85%;
+    min-width: 282px;
   }
 }
