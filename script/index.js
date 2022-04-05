@@ -1,6 +1,11 @@
 const popup = document.querySelector('.popup');
+const popupProfile = document.querySelector('.popup_type_edit');
+const popupAddElem = document.querySelector('.popup_type_add-element');
 const editButton = document.querySelector('.profile__edit-button');
-const closeButton = document.querySelector('.popup__close-button');
+const closeProfileButton = popupProfile.querySelector('.popup__close-button');
+const closeAddElemButton = popupAddElem.querySelector('.popup__close-button');
+
+const addBotton = document.querySelector('.profile__add-button');
 
 const textTitle = document.querySelector('.profile__title');
 const textAbout =  document.querySelector('.profile__subtitle');
@@ -62,13 +67,13 @@ initialCards.forEach( elem => {
 })
 
 
-function openPopup() {
-  inputName.value = textTitle.textContent;
-  inputAbout.value = textAbout.textContent;
+function openPopup(popup) {
+  inputName.value = textTitle.textContent; // Относится только к
+  inputAbout.value = textAbout.textContent; // Edit Profile попапу
   popup.classList.add('popup_opened');
 }
 
-function closePopup() {
+function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
@@ -79,13 +84,26 @@ function formSubmitHandler (evt) {
                           // Так мы можем определить свою логику отправки.
     textTitle.textContent = inputName.value;
     textAbout.textContent = inputAbout.value;
-    closePopup();
+    closePopup(popupProfile);
 }
 
 
-editButton.addEventListener ('click', openPopup);
+editButton.addEventListener ('click', function () {
+  openPopup(popupProfile);
+});
 
-closeButton.addEventListener ('click', closePopup);
+closeProfileButton.addEventListener ('click', function () {
+  closePopup(popupProfile);
+});
+
+addBotton.addEventListener ('click', function () {
+  openPopup(popupAddElem);
+});
+
+closeAddElemButton.addEventListener ('click', function () {
+  closePopup(popupAddElem);
+});
+
 
 // Прикрепляем обработчик к форме
 formElement.addEventListener('submit', formSubmitHandler);
