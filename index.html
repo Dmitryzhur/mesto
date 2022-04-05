@@ -43,59 +43,24 @@
     </section>
 
     <section class="elements">
-      <div class="elements__element">
-        <img class="elements__element-img" src="./images/photo-ocean.jpg" alt="Океан">
-        <div class="elements__element-block">
-          <h3 class="elements__element-title">Тихий океан</h3>
-          <button type="button" class="elements__element-like-button button"></button>
-        </div>
-      </div>
-
-      <div class="elements__element">
-        <img class="elements__element-img" src="./images/photo-wall.jpg" alt="Стена">
-        <div class="elements__element-block">
-          <h3 class="elements__element-title">Великая Китайская стена</h3>
-          <button type="button" class="elements__element-like-button button"></button>
-        </div>
-      </div>
-
-      <div class="elements__element">
-        <img class="elements__element-img" src="./images/photo-mountain.jpg" alt="Горы">
-        <div class="elements__element-block">
-          <h3 class="elements__element-title">Горы Алтая</h3>
-          <button type="button" class="elements__element-like-button button"></button>
-        </div>
-      </div>
-
-      <div class="elements__element">
-        <img class="elements__element-img" src="./images/photo-house.jpg" alt="Дом">
-        <div class="elements__element-block">
-          <h3 class="elements__element-title">Дом на Урале</h3>
-          <button type="button" class="elements__element-like-button button"></button>
-        </div>
-      </div>
-
-      <div class="elements__element">
-        <img class="elements__element-img" src="./images/photo-street.jpg" alt="Улица">
-        <div class="elements__element-block">
-          <h3 class="elements__element-title">Ночной Тагил</h3>
-          <button type="button" class="elements__element-like-button button"></button>
-        </div>
-      </div>
-
-      <div class="elements__element">
-        <img class="elements__element-img" src="./images/photo-lighthouse.jpg" alt="Маяк">
-        <div class="elements__element-block">
-          <h3 class="elements__element-title">Маяк</h3>
-          <button type="button" class="elements__element-like-button button"></button>
-        </div>
-      </div>
     </section>
   </main>
 
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022. Mesto Russia</p>
   </footer>
-  <script src="./script/index.js"></script>
+
+  <template id="elements__element-template">
+    <div class="elements__element">
+      <img class="elements__element-img">
+      <div class="elements__element-block">
+        <h3 class="elements__element-title"></h3>
+        <button type="button" class="elements__element-like-button button"></button>
+      </div>
+    </div>
+  </template>
+
+<script src="./script/index.js"></script>
 </body>
+
 </html>
