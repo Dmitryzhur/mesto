@@ -1,9 +1,12 @@
 const popup = document.querySelector('.popup');
 const popupProfile = document.querySelector('.popup_type_edit');
 const popupAddElem = document.querySelector('.popup_type_add-element');
+const popupViewCard = document.querySelector('.popup_type_view-image');
+
 const editButton = document.querySelector('.profile__edit-button');
 const closeProfileButton = popupProfile.querySelector('.popup__close-button');
 const closeAddElemButton = popupAddElem.querySelector('.popup__close-button');
+const closeViewCardButton = popupViewCard.querySelector('.popup__close-button');
 
 const addBotton = document.querySelector('.profile__add-button');
 
@@ -16,7 +19,7 @@ const inputAbout = popupProfile.querySelector('#input-about');
 
 const formAddNewCard = popupAddElem.querySelector('.popup__admin');
 const inputNameCard = popupAddElem.querySelector('#input-name-place');
-const inputImgCard = popupAddElem.querySelector('#input-link-place');
+const inputLinkCard = popupAddElem.querySelector('#input-link-place');
 
 const cardTemplate = document.querySelector('#elements__element-template').content;
 const cardsContainer = document.querySelector('.elements');
@@ -48,12 +51,23 @@ const initialCards = [
   }
 ];
 
+// Увеличение карточки
+function ViewCard(elem) {
+  const imageLink = elem.link;
+  const imageTitle = elem.name;
+  popupViewCard.querySelector('.popup__image').src = imageLink;
+  popupViewCard.querySelector('.popup__image').alt = imageTitle;
+  popupViewCard.querySelector('.popup__description').textContent = imageTitle;
+  openPopup(popupViewCard);
+}
+
 // Создание формы карточки
 function createCard(elem) {
   const newCardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
   newCardElement.querySelector('.elements__element-img').src = elem.link;
   newCardElement.querySelector('.elements__element-img').alt = elem.name;
   newCardElement.querySelector('.elements__element-title').textContent = elem.name;
+  newCardElement.querySelector('.elements__element-img').addEventListener('click', () => ViewCard(elem));
   newCardElement.querySelector('.elements__element-trash-button').addEventListener('click', deleteCard);
   newCardElement.querySelector('.elements__element-like-button').addEventListener('click', likeButton);
   return newCardElement;
@@ -90,7 +104,7 @@ initialCards.forEach( elem => {
 // Обработчик отправки новой карточки
 function AddNewCardHandler(evt) {
   evt.preventDefault();
-  const newPlace = {name: inputNameCard.value, link: inputImgCard.value};
+  const newPlace = {name: inputNameCard.value, link: inputLinkCard.value};
   addNewCard(newPlace);
   closePopup(popupAddElem);
   formAddNewCard.reset();
@@ -134,6 +148,9 @@ closeAddElemButton.addEventListener ('click', function () {
   closePopup(popupAddElem);
 });
 
+closeViewCardButton.addEventListener ('click', function () {
+  closePopup(popupViewCard);
+});
 
 // Прикрепляем обработчик к форме
 formElement.addEventListener('submit', formSubmitHandler);
