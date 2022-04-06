@@ -10,9 +10,13 @@ const addBotton = document.querySelector('.profile__add-button');
 const textTitle = document.querySelector('.profile__title');
 const textAbout =  document.querySelector('.profile__subtitle');
 
-const formElement = document.querySelector('.popup__admin');
-const inputName = document.querySelector('#input-name');
-const inputAbout = document.querySelector('#input-about');
+const formElement = popupProfile.querySelector('.popup__admin');
+const inputName = popupProfile.querySelector('#input-name');
+const inputAbout = popupProfile.querySelector('#input-about');
+
+const formAddNewCard = popupAddElem.querySelector('.popup__admin');
+const inputNameCard = popupAddElem.querySelector('#input-name-place');
+const inputImgCard = popupAddElem.querySelector('#input-link-place');
 
 const cardTemplate = document.querySelector('#elements__element-template').content;
 const cardsContainer = document.querySelector('.elements');
@@ -44,7 +48,7 @@ const initialCards = [
   }
 ];
 
-// Создание карточки
+// Создание формы карточки
 function createCard(elem) {
   const newCardElement = cardTemplate.querySelector('.elements__element').cloneNode(true);
   newCardElement.querySelector('.elements__element-img').src = elem.link;
@@ -65,6 +69,15 @@ function addNewCard(elem) {
 initialCards.forEach( elem => {
   addNewCard(elem);
 })
+
+// Обработчик отправки новой карточки
+function AddNewCardHandler(evt) {
+  evt.preventDefault();
+  const newPlace = {name: inputNameCard.value, link: inputImgCard.value};
+  addNewCard(newPlace);
+  closePopup(popupAddElem);
+  formAddNewCard.reset();
+}
 
 
 function openPopup(popup) {
@@ -107,3 +120,6 @@ closeAddElemButton.addEventListener ('click', function () {
 
 // Прикрепляем обработчик к форме
 formElement.addEventListener('submit', formSubmitHandler);
+
+// Отклик на добавление фото
+formAddNewCard.addEventListener('submit', AddNewCardHandler);
