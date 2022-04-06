@@ -55,8 +55,16 @@ function createCard(elem) {
   newCardElement.querySelector('.elements__element-img').alt = elem.name;
   newCardElement.querySelector('.elements__element-title').textContent = elem.name;
   newCardElement.querySelector('.elements__element-trash-button');
-  newCardElement.querySelector('.elements__element-like-button');
+  newCardElement.querySelector('.elements__element-like-button').addEventListener('click', likeButton);
   return newCardElement;
+}
+
+// Лайк картинке
+function likeButton(evt) {
+  // в переменной eventTarget окажется элемент
+  // button, на который мы кликнули
+  const eventTarget = evt.target;
+  eventTarget.classList.toggle('elements__element-like-button_active');
 }
 
 // Добавление карточки на страницу
