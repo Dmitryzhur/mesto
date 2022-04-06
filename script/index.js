@@ -54,9 +54,18 @@ function createCard(elem) {
   newCardElement.querySelector('.elements__element-img').src = elem.link;
   newCardElement.querySelector('.elements__element-img').alt = elem.name;
   newCardElement.querySelector('.elements__element-title').textContent = elem.name;
-  newCardElement.querySelector('.elements__element-trash-button');
+  newCardElement.querySelector('.elements__element-trash-button').addEventListener('click', deleteCard);
   newCardElement.querySelector('.elements__element-like-button').addEventListener('click', likeButton);
   return newCardElement;
+}
+
+// Удалить карточку
+function deleteCard(evt) {
+  // в переменной eventTarget окажется элемент
+  // button, на который мы кликнули
+  const eventTarget = evt.target;
+  const cardDelete = eventTarget.closest('.elements__element');
+  cardDelete.remove();
 }
 
 // Лайк картинке
