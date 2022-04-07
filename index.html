@@ -13,38 +13,6 @@
 </head>
 
 <body class="page">
-  <div class="popup popup_type_edit">
-    <div class="popup__container">
-      <button type="button" class="popup__close-button button" id="close-button"></button>
-      <h2 class="popup__heading">Редактировать профиль</h2>
-      <form class="popup__admin" name="popup-form">
-        <input class="popup__item" type="text" id="input-name" name="input-name" placeholder="Имя" required>
-        <input class="popup__item" type="text" id="input-about" name="input-about" placeholder="О себе" required>
-        <button type="submit" class="popup__button button">Сохранить</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="popup popup_type_add-element">
-    <div class="popup__container">
-      <button type="button" class="popup__close-button button" id="close-button-popup-add"></button>
-      <h2 class="popup__heading">Новое место</h2>
-      <form class="popup__admin" name="popup-form">
-        <input class="popup__item" type="text" id="input-name-place" name="input-name-place" placeholder="Название" required>
-        <input class="popup__item" type="url" id="input-link-place" name="input-link-place" placeholder="Ссылка на картинку" required>
-        <button type="submit" class="popup__button button">Создать</button>
-      </form>
-    </div>
-  </div>
-
-  <div class="popup popup_type_view-image">
-    <div class="popup__container-image">
-      <button type="button" class="popup__close-button button" id="close-button-popup-view"></button>
-      <img src="#" alt="Увеличенное изображение" class="popup__image">
-      <p class="popup__description"></p>
-    </div>
-  </div>
-
   <header class="header">
     <img class="header__logo" src="./images/logo.svg" alt="Логотип">
   </header>
@@ -80,6 +48,38 @@
       </div>
     </div>
   </template>
+
+  <div class="popup popup_type_edit">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button button" id="close-button"></button>
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <form class="popup__admin" name="popup-form">
+        <input class="popup__item" type="text" id="input-name" name="input-name" placeholder="Имя" required>
+        <input class="popup__item" type="text" id="input-about" name="input-about" placeholder="О себе" required>
+        <button type="submit" class="popup__button button">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_add-element">
+    <div class="popup__container">
+      <button type="button" class="popup__close-button button" id="close-button-popup-add"></button>
+      <h2 class="popup__heading">Новое место</h2>
+      <form class="popup__admin" name="popup-form">
+        <input class="popup__item" type="text" id="input-name-place" name="input-name-place" placeholder="Название" required>
+        <input class="popup__item" type="url" id="input-link-place" name="input-link-place" placeholder="Ссылка на картинку" required>
+        <button type="submit" class="popup__button button">Создать</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="popup popup_type_view-image">
+    <div class="popup__container-image">
+      <button type="button" class="popup__close-button button" id="close-button-popup-view"></button>
+      <img src="#" alt="Увеличенное изображение" class="popup__image">
+      <p class="popup__description"></p>
+    </div>
+  </div>
 
 <script src="./script/index.js"></script>
 </body>
