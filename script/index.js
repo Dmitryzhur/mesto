@@ -68,7 +68,7 @@ function createCard(elem) {
   newCardImg.src = elem.link;
   newCardImg.alt = elem.name;
   newCardElement.querySelector('.elements__element-title').textContent = elem.name;
-  newCardElement.querySelector('.elements__element-img').addEventListener('click', () => viewCard(elem));
+  newCardImg.addEventListener('click', () => viewCard(elem));
   newCardElement.querySelector('.elements__element-trash-button').addEventListener('click', deleteCard);
   newCardElement.querySelector('.elements__element-like-button').addEventListener('click', likeButton);
   return newCardElement;
@@ -85,8 +85,6 @@ function deleteCard(evt) {
 
 // Лайк картинке
 function likeButton(evt) {
-  // в переменной eventTarget окажется элемент
-  // button, на который мы кликнули
   const eventTarget = evt.target;
   eventTarget.classList.toggle('elements__element-like-button_active');
 }
