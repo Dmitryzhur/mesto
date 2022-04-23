@@ -1,14 +1,6 @@
 .popup__error_visible {
-  display: inline-block;
-  width: 358px;
   color: red;
   font-size: 12px;
   line-height: 14.5px;
-  margin-top: 5px;
 }
 
-@media screen and (max-width: 640px) {
-  .popup__error_visible {
-    width: 238px;
-  }
-}

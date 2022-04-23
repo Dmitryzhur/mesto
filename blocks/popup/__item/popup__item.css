@@ -6,23 +6,15 @@
   border-bottom: 1px solid rgba(0, 0, 0, .2);
   background-color: transparent;
   padding: 0 0 13px 0;
-  margin: 30px auto 0 auto;
+  margin: 0 auto 0 auto;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-}
-
-.popup__item:first-of-type {
-  margin: 54px auto 0 auto;
 }
 
 @media screen and (max-width: 640px) {
   .popup__item {
     width: 238px;
     text-align: start;
-  }
-
-  .popup__item:first-of-type {
-    margin: 75px auto 0 auto;
   }
 }

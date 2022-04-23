@@ -23,33 +23,6 @@ const cardsContainer = document.querySelector('.elements');
 const cardImage = popupViewCard.querySelector('.popup__image');
 const cardDescription = popupViewCard.querySelector('.popup__description');
 
-const initialCards = [
-  {
-    name: 'Ночной Тагил',
-    link: './images/photo-street.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Дом на Урале',
-    link: './images/photo-house.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 // Увеличение карточки
 function viewCard(elem) {
   cardImage.src = elem.link;
@@ -94,7 +67,7 @@ function addNewCard(elem) {
 }
 
 // Выгрузка карточек из массива
-initialCards.forEach( elem => {
+initialCards.forEach(elem => {
   addNewCard(elem);
 })
 
@@ -105,10 +78,19 @@ function addNewCardHandler(evt) {
   addNewCard(newPlace);
   closePopup(popupAddElem);
   formAddNewCard.reset();
+  const buttonSaveNewPlace = popupAddElem.querySelector('.popup__button');
+  buttonSaveNewPlace.classList.add('popup__button_disabled');
+  buttonSaveNewPlace.disabled = true;
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keyup', closeOnEsc);
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keyup', closeOnEsc);
 }
 
 function openProfilePopup(popup) {
@@ -117,36 +99,13 @@ function openProfilePopup(popup) {
   openPopup(popupProfile);
 }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
-
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                          // Так мы можем определить свою логику отправки.
-    textTitle.textContent = inputName.value;
-    textAbout.textContent = inputAbout.value;
-    closePopup(popupProfile);
-}
-
-
-buttonEdit.addEventListener ('click', function () {
-  openProfilePopup(popupProfile);
-});
-
-buttonAdd.addEventListener ('click', function () {
-  openPopup(popupAddElem);
-});
-
 // Закрытие попапов через esc
-document.addEventListener('keyup', (evt) => {
-  const popupOpenedNow = document.querySelector('.popup_opened');
+function closeOnEsc (evt) {
   if (evt.key === 'Escape') {
+    const popupOpenedNow = document.querySelector('.popup_opened');
     closePopup(popupOpenedNow);
   }
-})
+}
 
 // Закрытие попапов через overlay и крестик
 popupList.forEach((popup) => {
@@ -160,8 +119,26 @@ popupList.forEach((popup) => {
   })
 })
 
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
+function handleProfileFormSubmit (evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+                          // Так мы можем определить свою логику отправки.
+    textTitle.textContent = inputName.value;
+    textAbout.textContent = inputAbout.value;
+    closePopup(popupProfile);
+}
+
+buttonEdit.addEventListener ('click', function () {
+  openProfilePopup(popupProfile);
+});
+
+buttonAdd.addEventListener ('click', function () {
+  openPopup(popupAddElem);
+});
+
 // Прикрепляем обработчик к форме
-formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', handleProfileFormSubmit);
 
 // Отклик на добавление фото
 formAddNewCard.addEventListener('submit', addNewCardHandler);

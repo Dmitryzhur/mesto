@@ -1,0 +1,12 @@
+.popup__error {
+  display: inline-block;
+  width: 358px;
+  height: 25x;
+  margin: 5px 0 0 0;
+}
+
+@media screen and (max-width: 640px) {
+  .popup__error {
+    width: 238px;
+  }
+}
