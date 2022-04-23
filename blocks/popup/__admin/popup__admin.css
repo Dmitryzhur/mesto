@@ -1,10 +1,13 @@
 .popup__admin {
   margin: 0 0 0 36px;
   padding: 0;
+  display: relative;
+  width: 358px;
 }
 
 @media screen and (max-width: 640px) {
   .popup__admin {
     margin: 0 0 0 22px;
+    width: 238px;
   }
 }
