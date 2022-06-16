@@ -15,7 +15,7 @@ const textAbout = document.querySelector('.profile__subtitle');
 
 const formElement = popupProfile.querySelector('.popup__admin');
 const formProfile = popupProfile.querySelector('.popup__admin_type_profile');
-const formNewPlace = popupAddElem.querySelector('.popup__admin_type_add_elem');
+const formNewPlace = popupAddElem.querySelector('.popup__admin_type_add-elem');
 
 const inputName = popupProfile.querySelector('#input-name');
 const inputAbout = popupProfile.querySelector('#input-about');
