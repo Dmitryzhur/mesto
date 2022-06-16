@@ -1,5 +1,6 @@
-import { Card, initialCards } from "./Card.js";
+import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
+import { initialCards } from "./constants.js";
 
 const popupList = Array.from(document.querySelectorAll('.popup'));
 const popupProfile = document.querySelector('.popup_type_edit');
@@ -10,9 +11,12 @@ const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
 
 const textTitle = document.querySelector('.profile__title');
-const textAbout =  document.querySelector('.profile__subtitle');
+const textAbout = document.querySelector('.profile__subtitle');
 
 const formElement = popupProfile.querySelector('.popup__admin');
+const formProfile = popupProfile.querySelector('.popup__form_type_profile');
+const formNewPlace = popupAddElem.querySelector('.popup__form_type_add');
+
 const inputName = popupProfile.querySelector('#input-name');
 const inputAbout = popupProfile.querySelector('#input-about');
 
@@ -27,7 +31,7 @@ const cardImage = popupViewCard.querySelector('.popup__image');
 const cardDescription = popupViewCard.querySelector('.popup__description');
 
 const objSelectors = {
-	formSelector: '.popup__admin',
+	formElement: '.popup__admin',
 	inputElement: '.popup__item',
 	submitButtonSelector: '.popup__button',
 	inactiveButtonClass: 'popup__button_disabled',
@@ -45,8 +49,7 @@ const handleCardClick = (elem) => {
 
 function makeNewCard(elem, template) {
 	const newCard = new Card(elem, template, handleCardClick);
-	const card = newCard.createCard();
-	return card;
+	return newCard.createCard();
 }
 
 // Выгрузка карточек из массива
@@ -58,14 +61,12 @@ initialCards.forEach(elem => {
 // Обработчик отправки новой карточки
 function addNewCardHandler(evt) {
 	evt.preventDefault();
-	const newPlace = {name: inputNameCard.value, link: inputLinkCard.value};
+	const newPlace = { name: inputNameCard.value, link: inputLinkCard.value };
 	const newCard = makeNewCard(newPlace, cardTemplate);
 	cardsContainer.prepend(newCard);
 	closePopup(popupAddElem);
-	formAddNewCard.reset();
-	const buttonSaveNewPlace = popupAddElem.querySelector('.popup__button');
-	buttonSaveNewPlace.classList.add('popup__button_disabled');
-	buttonSaveNewPlace.disabled = true;
+	formNewPlace.reset();
+	formAddPlaceValidate.resetValidation();
 }
 
 function openPopup(popup) {
@@ -78,14 +79,14 @@ function closePopup(popup) {
 	document.removeEventListener('keyup', closeOnEsc);
 }
 
-function openProfilePopup(popup) {
+function openProfilePopup() {
 	inputName.value = textTitle.textContent;
 	inputAbout.value = textAbout.textContent;
 	openPopup(popupProfile);
 }
 
 // Закрытие попапов через esc
-function closeOnEsc (evt) {
+function closeOnEsc(evt) {
 	if (evt.key === 'Escape') {
 		const popupOpenedNow = document.querySelector('.popup_opened');
 		closePopup(popupOpenedNow);
@@ -98,37 +99,38 @@ popupList.forEach((popup) => {
 		if (evt.target.classList.contains('popup_opened')) {
 			closePopup(popup)
 		} else
-		if (evt.target.classList.contains('popup__close-button')) {
-			closePopup(popup)
-		}
+			if (evt.target.classList.contains('popup__close-button')) {
+				closePopup(popup)
+			}
 	})
 })
 
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
-function handleProfileFormSubmit (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                          // Так мы можем определить свою логику отправки.
-    textTitle.textContent = inputName.value;
-    textAbout.textContent = inputAbout.value;
-    closePopup(popupProfile);
+function handleProfileFormSubmit(evt) {
+	evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+	// Так мы можем определить свою логику отправки.
+	textTitle.textContent = inputName.value;
+	textAbout.textContent = inputAbout.value;
+	closePopup(popupProfile);
 }
 
-buttonEdit.addEventListener ('click', function () {
+buttonEdit.addEventListener('click', function () {
 	openProfilePopup(popupProfile);
 });
 
-buttonAdd.addEventListener ('click', function () {
+buttonAdd.addEventListener('click', function () {
 	openPopup(popupAddElem);
 });
 
-const formEditValidate = new FormValidator(objSelectors, formElement);
-formEditValidate.enableValidation();
+const formEditProfileValidate = new FormValidator(objSelectors, formProfile);
+formEditProfileValidate.enableValidation();
 
-// Прикрепляем обработчик к форме
-formElement.addEventListener('submit', handleProfileFormSubmit);
+const formAddPlaceValidate = new FormValidator(objSelectors, formNewPlace);
+formAddPlaceValidate.enableValidation();
 
-// Отклик на добавление фото
-formAddNewCard.addEventListener('submit', addNewCardHandler);
+// Прикрепляем обработчики к форме и добавлению фото
+formProfile.addEventListener('submit', handleProfileFormSubmit);
+formNewPlace.addEventListener('submit', addNewCardHandler);
 
 export { handleCardClick };
