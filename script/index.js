@@ -13,14 +13,12 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 const textTitle = document.querySelector('.profile__title');
 const textAbout = document.querySelector('.profile__subtitle');
 
-const formElement = popupProfile.querySelector('.popup__admin');
 const formProfile = popupProfile.querySelector('.popup__admin_type_profile');
 const formNewPlace = popupAddElem.querySelector('.popup__admin_type_add-elem');
 
 const inputName = popupProfile.querySelector('#input-name');
 const inputAbout = popupProfile.querySelector('#input-about');
 
-const formAddNewCard = popupAddElem.querySelector('.popup__admin');
 const inputNameCard = popupAddElem.querySelector('#input-name-place');
 const inputLinkCard = popupAddElem.querySelector('#input-link-place');
 
@@ -47,14 +45,14 @@ const handleCardClick = (elem) => {
 	openPopup(popupViewCard);
 }
 
-function makeNewCard(elem, template) {
-	const newCard = new Card(elem, template, handleCardClick);
+function makeNewCard(elem) {
+	const newCard = new Card(elem, cardTemplate, handleCardClick);
 	return newCard.createCard();
 }
 
 // Выгрузка карточек из массива
 initialCards.forEach(elem => {
-	const newCard = makeNewCard(elem, cardTemplate);
+	const newCard = makeNewCard(elem);
 	cardsContainer.prepend(newCard);
 })
 
@@ -62,7 +60,7 @@ initialCards.forEach(elem => {
 function addNewCardHandler(evt) {
 	evt.preventDefault();
 	const newPlace = { name: inputNameCard.value, link: inputLinkCard.value };
-	const newCard = makeNewCard(newPlace, cardTemplate);
+	const newCard = makeNewCard(newPlace);
 	cardsContainer.prepend(newCard);
 	closePopup(popupAddElem);
 	formNewPlace.reset();
