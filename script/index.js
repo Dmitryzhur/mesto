@@ -22,7 +22,7 @@ const inputAbout = popupProfile.querySelector('#input-about');
 const inputNameCard = popupAddElem.querySelector('#input-name-place');
 const inputLinkCard = popupAddElem.querySelector('#input-link-place');
 
-const cardTemplate = document.querySelector('#elements__element-template');
+const cardSelectorTemplateDefault = '#elements__element-template';
 const cardsContainer = document.querySelector('.elements');
 
 const cardImage = popupViewCard.querySelector('.popup__image');
@@ -46,7 +46,7 @@ const handleCardClick = (elem) => {
 }
 
 function makeNewCard(elem) {
-	const newCard = new Card(elem, '#elements__element-template', handleCardClick);
+	const newCard = new Card(elem, cardSelectorTemplateDefault, handleCardClick);
 	return newCard.createCard();
 }
 
