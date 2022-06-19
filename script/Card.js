@@ -4,11 +4,20 @@ class Card {
 		this._cardItem = cardItem;
 		this._cardTemplate = cardTemplate;
 		this._handleCardClick = handleCardClick;
-		this._cardElement = this._cardTemplate.content.querySelector('.elements__element').cloneNode(true);
+		this._cardElement = this._getTemplate();
 		this._buttonLike = this._cardElement.querySelector('.elements__element-like-button');
 		this._buttonDelete = this._cardElement.querySelector('.elements__element-trash-button');
 		this._cardTitle = this._cardElement.querySelector('.elements__element-title');
 		this._cardImage = this._cardElement.querySelector('.elements__element-img');
+	}
+
+	_getTemplate() {
+		const cardElement = document
+			.querySelector(this._cardTemplate)
+			.content
+			.querySelector('.elements__element') //селектор элемента карточки
+			.cloneNode(true)
+		return cardElement
 	}
 
     // Лайк карточки

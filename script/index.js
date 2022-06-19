@@ -46,7 +46,7 @@ const handleCardClick = (elem) => {
 }
 
 function makeNewCard(elem) {
-	const newCard = new Card(elem, cardTemplate, handleCardClick);
+	const newCard = new Card(elem, '#elements__element-template', handleCardClick);
 	return newCard.createCard();
 }
 
