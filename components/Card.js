@@ -1,5 +1,5 @@
 import { handleCardClick } from "../pages/index.js";
-class Card {
+export class Card {
 	constructor(cardItem, cardTemplate, handleCardClick) {
 		this._cardItem = cardItem;
 		this._cardTemplate = cardTemplate;
@@ -17,37 +17,34 @@ class Card {
 			.content
 			.querySelector('.elements__element') //селектор элемента карточки
 			.cloneNode(true)
-		return cardElement
+		return cardElement;
 	}
 
-    // Лайк карточки
+	// Лайк карточки
 	_likeButton() {
 		this._buttonLike.classList.toggle('elements__element-like-button_active');
 	}
-	
+
 	// Удаление карточки
 	_deleteCard() {
 		this._cardElement.remove();
 	}
 
-    // Отслеживание обработчиков 
+	// Отслеживание обработчиков 
 	_setEventListeners() {
-		this._buttonLike.addEventListener('click', ()=> this._likeButton());
-		this._buttonDelete.addEventListener('click', ()=> this._deleteCard());
+		this._buttonLike.addEventListener('click', () => this._likeButton());
+		this._buttonDelete.addEventListener('click', () => this._deleteCard());
 		this._cardImage.addEventListener('click', () => {
-		this._handleCardClick(this._cardItem);
-		})
+			this._handleCardClick(this._cardItem);
+		});
 	}
 
-    // Создание карточки
+	// Создание карточки
 	createCard() {
-		this._cardTitle.textContent = this._cardItem.name; 
-		this._cardImage.src = this._cardItem.link; 
+		this._cardTitle.textContent = this._cardItem.name;
+		this._cardImage.src = this._cardItem.link;
 		this._cardImage.alt = this._cardItem.name;
 		this._setEventListeners();
 		return this._cardElement;
 	}
-
 }
-
-export { Card }

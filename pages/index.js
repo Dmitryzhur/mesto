@@ -1,4 +1,5 @@
 import { Card } from "../components/Card.js"
+import { PopupWithImage } from "../components/PopupWithImage.js"
 import { FormValidator } from "../components/FormValidator.js";
 import { initialCards } from "../utils/constants.js";
 
@@ -25,8 +26,8 @@ const inputLinkCard = popupAddElem.querySelector('#input-link-place');
 const cardSelectorTemplateDefault = '#elements__element-template';
 const cardsContainer = document.querySelector('.elements');
 
-const cardImage = popupViewCard.querySelector('.popup__image');
-const cardDescription = popupViewCard.querySelector('.popup__description');
+export const cardImage = popupViewCard.querySelector('.popup__image');
+export const cardDescription = popupViewCard.querySelector('.popup__description');
 
 const objSelectors = {
 	formElement: '.popup__admin',
@@ -43,6 +44,8 @@ const handleCardClick = (elem) => {
 	cardImage.alt = elem.name;
 	cardDescription.textContent = elem.name;
 	openPopup(popupViewCard);
+		// перенос инициализации карточки в popupWithImage.js, на данный момент ошибка.
+	// popupWithImage.open(item);
 }
 
 function makeNewCard(elem) {
