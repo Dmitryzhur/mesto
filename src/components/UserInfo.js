@@ -8,7 +8,7 @@ export default class UserInfo {
 		const userInfoObj = {};
 		userInfoObj['name'] = this._elemName.textContent;
 		userInfoObj['about'] = this._elemAbout.textContent;
-		return userInfoObj
+		return userInfoObj;
 	}
 
 	setUserInfo(data) {
