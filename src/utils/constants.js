@@ -1,7 +1,12 @@
+// теперь картинки можно импортировать,
+// вебпак добавит в переменные правильные пути
+const tagilImage = new URL('../images/photo-street.jpg', import.meta.url);
+const uralImage = new URL('../images/photo-house.jpg', import.meta.url);
+
 export const initialCards = [
 	{
 		name: 'Ночной Тагил',
-		link: './images/photo-street.jpg'
+		link: tagilImage
 	},
 	{
 		name: 'Челябинская область',
@@ -17,7 +22,7 @@ export const initialCards = [
 	},
 	{
 		name: 'Дом на Урале',
-		link: './images/photo-house.jpg'
+		link: uralImage
 	},
 	{
 		name: 'Байкал',

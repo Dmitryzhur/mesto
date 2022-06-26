@@ -4,7 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./pages/index.css">
 	<title>Mesto</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Mesto: 3-5 проектная работа на Яндекс Практикуме">
@@ -14,13 +13,13 @@
 
 <body class="page">
 	<header class="header">
-		<img class="header__logo" src="./images/logo.svg" alt="Логотип">
+		<img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Логотип">
 	</header>
 
 	<main class="content">
 		<section class="profile">
 			<div class="profile__avatar-info">
-				<img class="profile__avatar" src="./images/avatar.png" alt="Аватар">
+				<img class="profile__avatar" src="<%=require('./images/avatar.png')%>"  alt="Аватар">
 				<div class="profile__info">
 					<h1 class="profile__title">Дима Журавлев</h1>
 					<button type="button" class="profile__edit-button button"></button>
