@@ -16,20 +16,20 @@ export default class Popup {
 	}
 
 	// Закрытие попапа клавишей Esc
-	_handleEscClose() {
+	_handleEscClose = (evt) => {
 		if (evt.key === 'Escape') {
-			this.close();
+			this.closePopup();
 		}
 	}
 
 	// Отслеживание обработчиков 
 	setEventListeners() {
-		this._popup.addEventListener('mousedown', (evt) => {
+		this._popup.addEventListener('click', (evt) => {
 			if (evt.target.classList.contains('popup_opened')) {
-				this.close()
+				this.closePopup()
 			}
 			if (evt.target.classList.contains('popup__close-button')) {
-				this.close()
+				this.closePopup()
 			}
 		})
 	}

@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-export class PopupWithForm extends Popup {
+export default class PopupWithForm extends Popup {
 
 	constructor({ callbackFunction }, selector) {
 		super(selector);
@@ -12,11 +12,11 @@ export class PopupWithForm extends Popup {
 
 	// собирает данные всех полей формы
 	_getInputValues = () => {
-		const inputDataObj = {};
+		this._formValues = {};
 		this._inputList.forEach(input => {
-			inputDataObj[input.name] = input.value;
+			this._formValues[input.name] = input.value;
 		});
-		return inputDataObj;
+		return this._formValues;
 	}
 
 	// кроме обработчика иконки закрытия также добавляет обработчик сабмита формы
@@ -28,8 +28,8 @@ export class PopupWithForm extends Popup {
 	}
 
 	// добавляет сброс формы
-	close = () => {
-		super.close();
+	closePopup = () => {
+		super.closePopup();
 		this._formElement.reset();
 	}
 }

@@ -1,5 +1,5 @@
-import { handleCardClick } from "../pages/index.js";
-export class Card {
+
+export default class Card {
 	constructor(cardItem, cardTemplate, handleCardClick) {
 		this._cardItem = cardItem;
 		this._cardTemplate = cardTemplate;

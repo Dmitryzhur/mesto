@@ -1,4 +1,4 @@
-export class FormValidator {
+export default class FormValidator {
 	constructor(objSelectors, formElement) {
 		this._objSelectors = objSelectors;
 		this._formElement = formElement;
@@ -13,7 +13,7 @@ export class FormValidator {
 		errorElement.textContent = errorMessage;
 		errorElement.classList.add(this._objSelectors.errorClass);
 	};
-	
+
 	// Функция для скрытия ошибки
 	_hideInputError = (inputElement) => {
 		const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
@@ -21,7 +21,7 @@ export class FormValidator {
 		errorElement.classList.remove(this._objSelectors.errorClass);
 		errorElement.textContent = '';
 	};
-	
+
 	// Проверка на валидность полей ввода
 	_checkInputValidity(inputElement) {
 		if (!inputElement.validity.valid) {
@@ -30,7 +30,7 @@ export class FormValidator {
 			this._hideInputError(inputElement);
 		}
 	};
-	
+
 	// Отслеживание ввода
 	_setEventListeners = () => {
 		this._toggleButtonState();
@@ -41,10 +41,10 @@ export class FormValidator {
 			});
 		});
 	};
-	
+
 	// Функция принимает массив полей
 	_hasInvalidInput = () => {
-	  	// проходим по этому массиву методом some
+		// проходим по этому массиву методом some
 		return this._inputList.some((inputElement) => {
 			// Если поле не валидно, колбэк вернёт true
 			// Обход массива прекратится и вся функция
@@ -52,7 +52,7 @@ export class FormValidator {
 			return !inputElement.validity.valid
 		});
 	}
-	
+
 	// Работа с кнопкой
 	// Функция принимает массив полей ввода и элемент кнопки, состояние которой нужно менять
 	_toggleButtonState = () => {
@@ -67,15 +67,18 @@ export class FormValidator {
 			this._buttonElement.disabled = false;
 		}
 	}
-	
+
 	resetValidation = () => {
 		this._toggleButtonState();
 		this._inputList.forEach((inputElement) => {
 			this._hideInputError(inputElement);
 		});
 	}
-	
+
 	enableValidation = () => {
+		this._formElement.addEventListener('submit', function (evt) {
+			evt.preventDefault();
+		});
 		this._setEventListeners();
 	};
 }

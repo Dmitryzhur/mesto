@@ -1,10 +1,10 @@
 import Popup from "./Popup.js";
 import { cardImage, cardDescription } from "../pages/index.js";
 
-export class PopupWithImage extends Popup {
+export default class PopupWithImage extends Popup {
 
-	open = (data) => {
-		super.open();
+	openPopup = (data) => {
+		super.openPopup();
 		cardImage.src = data.link;
 		cardImage.alt = data.name;
 		cardDescription.textContent = data.name;
