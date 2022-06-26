@@ -1,7 +1,7 @@
+// import { cardImage, cardDescription } from "../pages/index.js";
 export default class Popup {
 	constructor(selector) {
-		this._popupSelector = selector;
-		this._popup = document.querySelector(this._popupSelector);
+		this._popup = document.querySelector(selector);
 	}
 
 	openPopup() {
