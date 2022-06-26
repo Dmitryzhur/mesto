@@ -68,7 +68,10 @@ const userInfo = new UserInfo({
 // Добавляем управление двумя попапами с формами
 const popupNewPlace = new PopupWithForm({
 	callbackFunction: (data) => {
-		cardList.renderer(data);
+		cardList.renderer({
+			link: data['input-link-place'],
+			name: data['input-name-place']
+		});
 		popupNewPlace.closePopup();
 	}
 }, '.popup_type_add-element');
@@ -76,7 +79,10 @@ popupNewPlace.setEventListeners();
 
 const editProfilePopup = new PopupWithForm({
 	callbackFunction: (data) => {
-		userInfo.setUserInfo(data);
+		userInfo.setUserInfo({
+			name: data['input-name'],
+			about: data['input-about']	
+		});
 		editProfilePopup.closePopup();
 	}
 }, '.popup_type_edit'
