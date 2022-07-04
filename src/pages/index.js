@@ -1,5 +1,6 @@
 import './index.css';
 
+import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -56,7 +57,7 @@ const userInfo = new UserInfo({
 // Добавляем управление двумя попапами с формами
 const popupNewPlace = new PopupWithForm({
 	callbackFunction: (data) => {
-		cardList.addItem(makeNewCard({ 
+		cardList.addItem(makeNewCard({
 			link: data['input-link-place'],
 			name: data['input-name-place']
 		}));
@@ -69,7 +70,7 @@ const editProfilePopup = new PopupWithForm({
 	callbackFunction: (data) => {
 		userInfo.setUserInfo({
 			name: data['input-name'],
-			about: data['input-about']	
+			about: data['input-about']
 		});
 		editProfilePopup.closePopup();
 	}
@@ -108,3 +109,21 @@ buttonAdd.addEventListener('click', function () {
 	popupNewPlace.openPopup();
 	formValidators['NewPlace'].resetValidation();
 });
+
+const API_CONFIG = {
+	baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-44',
+	headers: {
+		authorization: '5ae85ff0-6a9f-41ff-87d1-d1c4768e29ea',
+		'Content-Type': 'application/json'
+	}
+};
+
+const api = new Api(API_CONFIG);
+
+api.getInitialCards();
+
+api.getUser()
+	.then((data) => {
+		userInfo.setUserInfo(data);
+	})
+
