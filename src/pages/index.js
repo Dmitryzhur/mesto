@@ -51,16 +51,20 @@ cardList.renderItems();
 // Добавляем управление отображением информации о пользователе на странице
 const userInfo = new UserInfo({
 	selectorName: '.profile__title',
-	selectorAbout: '.profile__subtitle'
+	selectorAbout: '.profile__subtitle',
+	selectorAvatar: '.profile__avatar'
 });
 
 // Добавляем управление двумя попапами с формами
 const popupNewPlace = new PopupWithForm({
 	callbackFunction: (data) => {
-		cardList.addItem(makeNewCard({
-			link: data['input-link-place'],
-			name: data['input-name-place']
-		}));
+		api.addCard(data)
+			// .then(res => {
+			// 	debugger;
+			// })
+			.then(res => { // res = undefided
+				cardList.addItem(makeNewCard(res));
+			})
 		popupNewPlace.closePopup();
 	}
 }, '.popup_type_add-element');
@@ -68,11 +72,14 @@ popupNewPlace.setEventListeners();
 
 const editProfilePopup = new PopupWithForm({
 	callbackFunction: (data) => {
-		userInfo.setUserInfo({
-			name: data['input-name'],
-			about: data['input-about']
-		});
-		editProfilePopup.closePopup();
+		api.editProfile(data)
+			// .then(res => {
+			// 	debugger;
+			// })
+			.then((res) => { // res = undefided
+				userInfo.setUserInfo(res);
+				editProfilePopup.closePopup();
+			})
 	}
 }, '.popup_type_edit'
 );
@@ -97,6 +104,7 @@ enableValidation(objSelectors);
 // Обработчики
 buttonEdit.addEventListener('click', () => {
 	const startInputValue = userInfo.getUserInfo();
+	editProfilePopup.setInputValues(startInputValue);
 	inputName.value = startInputValue.name;
 	inputAbout.value = startInputValue.about;
 	// Можно сделать метод setInputValues в классе PopupWithForm, который будет вставлять данные в инпуты:
@@ -130,5 +138,5 @@ api.getInitialCards()
 api.getUser()
 	.then((data) => {
 		userInfo.setUserInfo(data);
+		userInfo.setAvatar(data);
 	})
-

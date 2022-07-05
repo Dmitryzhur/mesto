@@ -9,6 +9,7 @@ export default class Card {
 		this._buttonDelete = this._cardElement.querySelector('.elements__element-trash-button');
 		this._cardTitle = this._cardElement.querySelector('.elements__element-title');
 		this._cardImage = this._cardElement.querySelector('.elements__element-img');
+		this._cardLikes =this._cardElement.querySelector('.elements__element-number-like');
 	}
 
 	_getTemplate() {

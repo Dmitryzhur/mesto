@@ -19,7 +19,7 @@
 	<main class="content">
 		<section class="profile">
 			<div class="profile__avatar-info">
-				<img class="profile__avatar" src="<%=require('./images/avatar.png')%>"  alt="Аватар">
+				<img class="profile__avatar" src="" alt="Аватар">
 				<div class="profile__info">
 					<h1 class="profile__title"></h1>
 					<button type="button" class="profile__edit-button button"></button>
@@ -43,7 +43,10 @@
 			<img class="elements__element-img">
 			<div class="elements__element-block">
 				<h3 class="elements__element-title"></h3>
-				<button type="button" class="elements__element-like-button button"></button>
+				<div class="elements__element-like-container">
+					<button class="elements__element-like-button button" type="button" aria-label="Нравится"></button>
+					<p class="elements__element-number-like">0</p>
+				</div>
 			</div>
 		</div>
 	</template>
