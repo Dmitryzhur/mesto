@@ -7,7 +7,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
-import { initialCards } from "../utils/constants.js";
+// import { initialCards } from "../utils/constants.js";
 import { objSelectors } from '../utils/utils.js';
 
 const popupProfile = document.querySelector('.popup_type_edit');
@@ -39,7 +39,7 @@ function makeNewCard(item) {
 
 // Создание экземпляра класса Section
 const cardList = new Section({
-	data: initialCards,
+	data: [],
 	renderer: (item) => {
 		const card = makeNewCard(item);
 		cardList.addItem(card);
@@ -120,7 +120,12 @@ const API_CONFIG = {
 
 const api = new Api(API_CONFIG);
 
-api.getInitialCards();
+api.getInitialCards()
+	.then((cards) => {
+		cardList._renderedItems = cards;
+		cardList.renderItems();
+	})
+
 
 api.getUser()
 	.then((data) => {

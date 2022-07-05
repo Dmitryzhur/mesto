@@ -17,9 +17,12 @@ export default class Api {
 			headers: this._headers,
 		})
 			.then(this._checkResponseStatus)
-		// .then(res => {
-		// 	debugger;
-		// })
+			.catch((err) => {
+				console.log(err);
+			})
+			// .then(res => {
+			// 	debugger;
+			// })
 	}
 
 
@@ -32,5 +35,8 @@ export default class Api {
 			.catch((err) => {
 				console.log(err);
 			})
+			// .then(res => {
+			// 	debugger;
+			// })
 	}
 }

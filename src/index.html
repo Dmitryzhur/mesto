@@ -80,6 +80,27 @@
 		</div>
 	</div>
 
+	<div class="popup popup_type_update-avatar">
+		<div class="popup__container">
+			<button type="button" class="popup__close-button button" id="close-button"></button>
+			<h2 class="popup__heading">Обновить аватар</h2>
+			<form class="popup__admin popup__admin_type_profile" name="EditProfile" novalidate>
+				<input class="popup__item" type="url" id="input-link-avatar" name="input-link-avatar"
+					placeholder="Ссылка на картинку" required>
+				<span class="popup__input-error input-about-error popup__error"></span>
+				<button type="submit" class="popup__button button">Сохранить</button>
+			</form>
+		</div>
+	</div>
+
+	<div class="popup popup_type_confirm">
+		<div class="popup__container">
+			<button type="button" class="popup__close-button button" id="close-button-popup-confirm"></button>
+			<h2 class="popup__heading">Вы уверены?</h2>
+			<button type="submit" class="popup__button button">Да</button>
+		</div>
+	</div>
+
 	<div class="popup popup_type_view-image">
 		<div class="popup__container-image">
 			<button type="button" class="popup__close-button button" id="close-button-popup-view"></button>
