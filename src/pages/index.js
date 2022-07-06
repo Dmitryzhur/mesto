@@ -4,6 +4,7 @@ import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
@@ -15,6 +16,7 @@ const popupViewCard = document.querySelector('.popup_type_view-image');
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
+const buttonDel = document.querySelector('.elements__element-trash-button');
 
 const inputName = popupProfile.querySelector('#input-name');
 const inputAbout = popupProfile.querySelector('#input-about');
@@ -42,7 +44,7 @@ const cardList = new Section({
 	data: [],
 	renderer: (item) => {
 		const card = makeNewCard(item);
-		cardList.addItem(card);
+		cardList.addItemAppend(card);
 	}
 }, '.elements');
 
@@ -58,12 +60,16 @@ const userInfo = new UserInfo({
 // Добавляем управление двумя попапами с формами
 const popupNewPlace = new PopupWithForm({
 	callbackFunction: (data) => {
+		popupNewPlace.renderLoading(true)
 		api.addCard(data)
 			// .then(res => {
 			// 	debugger;
 			// })
-			.then(res => { // res = undefided
+			.then(res => {
 				cardList.addItem(makeNewCard(res));
+			})
+			.finally(() => {
+				popupNewPlace.renderLoading(false);
 			})
 		popupNewPlace.closePopup();
 	}
@@ -76,7 +82,7 @@ const editProfilePopup = new PopupWithForm({
 			// .then(res => {
 			// 	debugger;
 			// })
-			.then((res) => { // res = undefided
+			.then((res) => {
 				userInfo.setUserInfo(res);
 				editProfilePopup.closePopup();
 			})
@@ -118,6 +124,11 @@ buttonAdd.addEventListener('click', function () {
 	formValidators['NewPlace'].resetValidation();
 });
 
+// buttonDel.addEventListener('click', function () {
+// 	popupNewPlace.openPopup();
+// 	formValidators['Update-Avatar'].resetValidation();
+// });
+
 const API_CONFIG = {
 	baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-44',
 	headers: {
@@ -128,15 +139,15 @@ const API_CONFIG = {
 
 const api = new Api(API_CONFIG);
 
-api.getInitialCards()
-	.then((cards) => {
+Promise.all([api.getUser(), api.getCards()])
+	.then(([userData, cards]) => {
+		userInfo.setUserInfo(userData);
+		userInfo.setAvatar(userData);
+		// userInfo.setId(userData);
+
 		cardList._renderedItems = cards;
 		cardList.renderItems();
 	})
-
-
-api.getUser()
-	.then((data) => {
-		userInfo.setUserInfo(data);
-		userInfo.setAvatar(data);
-	})
+	.catch(err => {
+		console.log(err)
+	});

@@ -5,7 +5,7 @@
   font-style: normal;
   color: #000;
   padding: 0;
-  margin: 34px 0 54px 36px;
+  margin: 34px 0 54px 36px; /*Изменить верстку для confirm popup*/ 
 }
 
 @media screen and (max-width: 640px) {

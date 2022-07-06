@@ -22,6 +22,11 @@ export default class Section {
 		this._container.prepend(element);
 	}
 
+	// добавляет в готовую разметку
+	addItemAppend(element) {
+		this._container.append(element);
+	}
+
 	// обрабатывает каждую карточку
 	renderItems() {
 		this._renderedItems.forEach(item => this.renderer(item));
