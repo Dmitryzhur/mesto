@@ -32,9 +32,13 @@ const handleCardClick = (data) => {
 	popupView.openPopup(data);
 };
 
+const handleCardClickDelete = (data) => {
+	confirmDeletePopup.openPopup(data);
+};
+
 // Создание новой карточки
 function makeNewCard(item) {
-	const newCard = new Card(item, '#elements__element-template', handleCardClick);
+	const newCard = new Card(item, '#elements__element-template', { handleCardClick, handleCardClickDelete }, userInfo.userId );
 	const card = newCard.createCard();
 	return card;
 };
@@ -57,7 +61,7 @@ const userInfo = new UserInfo({
 	selectorAvatar: '.profile__avatar'
 });
 
-// Добавляем управление двумя попапами с формами
+// Добавляем управление тремя попапами с формами
 const popupNewPlace = new PopupWithForm({
 	callbackFunction: (data) => {
 		popupNewPlace.renderLoading(true)
@@ -90,6 +94,25 @@ const editProfilePopup = new PopupWithForm({
 }, '.popup_type_edit'
 );
 editProfilePopup.setEventListeners();
+
+const confirmDeletePopup = new PopupWithConfirm({
+	callbackFunction: (data) => {
+		confirmDeletePopup.renderLoading(true);
+		api.deleteCard(data)
+			// .then(res => {
+			// 	debugger;
+			// })
+			.then((res) => {
+				card.deleteCard(res);
+				confirmDeletePopup.closePopup();
+			})
+			.finally(() => {
+				confirmDeletePopup.renderLoading(false);
+			})
+	}
+}, '.popup_type_confirm'
+);
+confirmDeletePopup.setEventListeners();
 
 
 const formValidators = {};
@@ -143,7 +166,7 @@ Promise.all([api.getUser(), api.getCards()])
 	.then(([userData, cards]) => {
 		userInfo.setUserInfo(userData);
 		userInfo.setAvatar(userData);
-		// userInfo.setId(userData);
+		userInfo.setId(userData);
 
 		cardList._renderedItems = cards;
 		cardList.renderItems();

@@ -1,16 +1,20 @@
 
 export default class Card {
-	constructor(cardItem, cardTemplate, cardId, handleCardClick) {
+	constructor(cardItem, cardTemplate, { handleCardClick, handleCardClickDelete }, user) {
 		this._cardItem = cardItem;
 		this._cardTemplate = cardTemplate;
-		this._id = this._cardItem._id;
 		this._handleCardClick = handleCardClick;
+		this._handleCardClickDelete = handleCardClickDelete;
+		this._user = user;
 		this._cardElement = this._getTemplate();
 		this._buttonLike = this._cardElement.querySelector('.elements__element-like-button');
 		this._buttonDelete = this._cardElement.querySelector('.elements__element-trash-button');
+		if (this._user !== this._cardItem.owner._id) {
+			this._buttonDelete.remove();
+		};
 		this._cardTitle = this._cardElement.querySelector('.elements__element-title');
 		this._cardImage = this._cardElement.querySelector('.elements__element-img');
-		this._cardLikes =this._cardElement.querySelector('.elements__element-number-like');
+		this._cardLikes = this._cardElement.querySelector('.elements__element-number-like');
 	}
 
 	_getTemplate() {
@@ -28,14 +32,16 @@ export default class Card {
 	}
 
 	// Удаление карточки
-	_deleteCard() {
+	deleteCard() {
 		this._cardElement.remove();
 	}
 
 	// Отслеживание обработчиков 
 	_setEventListeners() {
 		this._buttonLike.addEventListener('click', () => this._likeButton());
-		this._buttonDelete.addEventListener('click', () => this._deleteCard());
+		this._buttonDelete.addEventListener('click', () => {
+			this._handleCardClickDelete(this._cardItem);
+		});
 		this._cardImage.addEventListener('click', () => {
 			this._handleCardClick(this._cardItem);
 		});
