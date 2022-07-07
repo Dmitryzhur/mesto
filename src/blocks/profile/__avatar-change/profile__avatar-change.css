@@ -1,0 +1,27 @@
+.profile__avatar-change {
+	opacity: 0;
+	margin: auto;
+	padding: 0;
+	background-color: rgba(0, 0, 0);
+	background-image: url(../../../images/change-avatar.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 26px 26px;
+	height: 120px;
+	width: 120px;
+	cursor: pointer;
+	border: none;
+	transition: opacity 0.5s ease-in-out;
+	position: absolute;
+	border-radius: 50%;
+}
+
+@media(hover: hover) and (pointer: fine) {
+	.profile__avatar-change:hover {
+		opacity: 0.6;
+	}
+}
+
+.profile__avatar-change:focus {
+	opacity: 0.6;
+}

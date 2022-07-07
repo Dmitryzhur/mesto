@@ -17,6 +17,7 @@ const popupViewCard = document.querySelector('.popup_type_view-image');
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonDel = document.querySelector('.elements__element-trash-button');
+const buttonChangeAvatar = document.querySelector('.profile__avatar-change');
 
 const inputName = popupProfile.querySelector('#input-name');
 const inputAbout = popupProfile.querySelector('#input-about');
