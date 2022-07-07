@@ -32,13 +32,20 @@ const handleCardClick = (data) => {
 	popupView.openPopup(data);
 };
 
-const handleCardClickDelete = (data) => {
-	confirmDeletePopup.openPopup(data);
+const handleCardClickDelete = (card) => {
+	getCardInfo(confirmDeletePopup, card);
+	confirmDeletePopup.openPopup();
 };
+
+// Получаем информацию по карточке 
+const getCardInfo = (popup, card) => {
+	popup.cardId = card._cardItem._id;
+	popup.delCard = card.getEl();
+}
 
 // Создание новой карточки
 function makeNewCard(item) {
-	const newCard = new Card(item, '#elements__element-template', { handleCardClick, handleCardClickDelete }, userInfo.userId );
+	const newCard = new Card(item, '#elements__element-template', { handleCardClick, handleCardClickDelete }, userInfo.userId);
 	const card = newCard.createCard();
 	return card;
 };
@@ -98,12 +105,12 @@ editProfilePopup.setEventListeners();
 const confirmDeletePopup = new PopupWithConfirm({
 	callbackFunction: (data) => {
 		confirmDeletePopup.renderLoading(true);
-		api.deleteCard(data)
+		api.delCard(data.cardId)
 			// .then(res => {
 			// 	debugger;
 			// })
-			.then((res) => {
-				card.deleteCard(res);
+			.then(() => {
+				data.delCard.remove();
 				confirmDeletePopup.closePopup();
 			})
 			.finally(() => {
@@ -113,7 +120,6 @@ const confirmDeletePopup = new PopupWithConfirm({
 }, '.popup_type_confirm'
 );
 confirmDeletePopup.setEventListeners();
-
 
 const formValidators = {};
 

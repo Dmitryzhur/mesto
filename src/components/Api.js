@@ -20,7 +20,6 @@ export default class Api {
 		// })
 	}
 
-
 	getUser() {
 		return fetch(`${this._baseURL}/users/me`, {
 			method: 'GET',
@@ -63,11 +62,10 @@ export default class Api {
 			})
 	}
 
-	deleteCard(_id) {
-		return fetch(`${this._baseURL}/cards/${this._id}`, {
+	delCard(_id) {
+		return fetch(`${this._baseURL}/cards/${_id}`, { 
 			method: 'DELETE',
 			headers: this._headers,
-			body: JSON.stringify(_id)
 		})
 			.then(this._checkResponseStatus)
 			.catch((err) => {
@@ -88,10 +86,9 @@ export default class Api {
 	}
 
 	deleteLike(_id) {
-		return fetch(`${this._baseURL}/cards/${this._id}/likes`, {
+		return fetch(`${this._baseURL}/cards/${_id}/likes`, {
 			method: 'DELETE',
 			headers: this._headers,
-			body: JSON.stringify(_id)
 		})
 			.then(this._checkResponseStatus)
 			.catch((err) => {

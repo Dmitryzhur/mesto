@@ -17,6 +17,20 @@ export default class Card {
 		this._cardLikes = this._cardElement.querySelector('.elements__element-number-like');
 	}
 
+	// получаем id карты для попап удаления
+	getId() {
+		return this._cardItem._id;
+	}
+
+	getEl() {
+		return this._buttonDelete.closest('.elements__element');
+	}
+
+	// Удаление карточки
+	deleteCard() {
+		this._cardElement.remove();
+	}
+
 	_getTemplate() {
 		const cardElement = document
 			.querySelector(this._cardTemplate)
@@ -31,16 +45,11 @@ export default class Card {
 		this._buttonLike.classList.toggle('elements__element-like-button_active');
 	}
 
-	// Удаление карточки
-	deleteCard() {
-		this._cardElement.remove();
-	}
-
 	// Отслеживание обработчиков 
 	_setEventListeners() {
 		this._buttonLike.addEventListener('click', () => this._likeButton());
 		this._buttonDelete.addEventListener('click', () => {
-			this._handleCardClickDelete(this._cardItem);
+			this._handleCardClickDelete(this);
 		});
 		this._cardImage.addEventListener('click', () => {
 			this._handleCardClick(this._cardItem);
