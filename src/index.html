@@ -57,10 +57,10 @@
 			<button type="button" class="popup__close-button button" id="close-button"></button>
 			<h2 class="popup__heading">Редактировать профиль</h2>
 			<form class="popup__admin popup__admin_type_profile" name="EditProfile" novalidate>
-				<input class="popup__item" type="text" id="input-name" name="input-name" placeholder="Имя" required
+				<input class="popup__item" type="text" id="input-name" name="name" placeholder="Имя" required
 					minlength="2" maxlength="40">
 				<span class="popup__input-error input-name-error popup__error"></span>
-				<input class="popup__item" type="text" id="input-about" name="input-about" placeholder="О себе" required
+				<input class="popup__item" type="text" id="input-about" name="about" placeholder="О себе" required
 					minlength="2" maxlength="200">
 				<span class="popup__input-error input-about-error popup__error"></span>
 				<button type="submit" class="popup__button button">Сохранить</button>
@@ -89,9 +89,9 @@
 			<button type="button" class="popup__close-button button" id="close-button"></button>
 			<h2 class="popup__heading">Обновить аватар</h2>
 			<form class="popup__admin popup__admin_type_profile" name="Update-Avatar" novalidate>
-				<input class="popup__item" type="url" id="input-link-avatar" name="input-link-avatar"
+				<input class="popup__item" type="url" id="input-link-avatar" name="avatar"
 					placeholder="Ссылка на картинку" required>
-				<span class="popup__input-error input-about-error popup__error"></span>
+				<span class="popup__input-error input-link-avatar-error popup__error"></span>
 				<button type="submit" class="popup__button button">Сохранить</button>
 			</form>
 		</div>

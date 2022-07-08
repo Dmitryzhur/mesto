@@ -17,7 +17,7 @@ const popupViewCard = document.querySelector('.popup_type_view-image');
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonDel = document.querySelector('.elements__element-trash-button');
-const buttonChangeAvatar = document.querySelector('.profile__avatar-change');
+const buttonUpdateAvatar = document.querySelector('.profile__avatar-change');
 
 const inputName = popupProfile.querySelector('#input-name');
 const inputAbout = popupProfile.querySelector('#input-about');
@@ -103,6 +103,21 @@ const editProfilePopup = new PopupWithForm({
 );
 editProfilePopup.setEventListeners();
 
+const popupUpdateAvatar = new PopupWithForm({
+	callbackFunction: (data) => {
+		api.editAvatar(data)
+			// .then(res => {
+			// 	debugger;
+			// })
+			.then((res) => {
+				userInfo.setAvatar(res);
+				popupUpdateAvatar.closePopup();
+			})
+	}
+}, '.popup_type_update-avatar'
+);
+popupUpdateAvatar.setEventListeners();
+
 const confirmDeletePopup = new PopupWithConfirm({
 	callbackFunction: (data) => {
 		confirmDeletePopup.renderLoading(true);
@@ -141,10 +156,6 @@ enableValidation(objSelectors);
 buttonEdit.addEventListener('click', () => {
 	const startInputValue = userInfo.getUserInfo();
 	editProfilePopup.setInputValues(startInputValue);
-	inputName.value = startInputValue.name;
-	inputAbout.value = startInputValue.about;
-	// Можно сделать метод setInputValues в классе PopupWithForm, который будет вставлять данные в инпуты:
-	// И не нужно будет искать эти инпуты в index.js и что-то вставлять в них при открытии профиля.
 	editProfilePopup.openPopup();
 	formValidators['EditProfile'].resetValidation();
 });
@@ -154,10 +165,12 @@ buttonAdd.addEventListener('click', function () {
 	formValidators['NewPlace'].resetValidation();
 });
 
-// buttonDel.addEventListener('click', function () {
-// 	popupNewPlace.openPopup();
-// 	formValidators['Update-Avatar'].resetValidation();
-// });
+buttonUpdateAvatar.addEventListener('click', function () {
+	const startInputValue = userInfo.getUserInfo();
+	popupUpdateAvatar.setInputValues(startInputValue);
+	popupUpdateAvatar.openPopup();
+		formValidators['Update-Avatar'].resetValidation();
+});
 
 const API_CONFIG = {
 	baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-44',

@@ -36,8 +36,8 @@ export default class Api {
 			method: 'PATCH',
 			headers: this._headers,
 			body: JSON.stringify({
-				name: data['input-name'],
-				about: data['input-about']
+				name: data.name,
+				about: data.about
 			})
 		},
 		)
@@ -101,7 +101,7 @@ export default class Api {
 			method: 'PATCH',
 			headers: this._headers,
 			body: JSON.stringify({
-                avatar: data['input-link-avatar']
+                avatar: data.avatar
             })
 		},
 		)
