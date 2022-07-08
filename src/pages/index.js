@@ -71,14 +71,10 @@ function makeNewCard(item) {
 
 // Создание экземпляра класса Section
 const cardList = new Section({
-	data: [],
 	renderer: (item) => {
-		const card = makeNewCard(item);
-		cardList.addItemAppend(card);
+		cardList.addItemAppend(makeNewCard(item));
 	}
 }, '.elements');
-
-cardList.renderItems();
 
 // Добавляем управление отображением информации о пользователе на странице
 const userInfo = new UserInfo({
@@ -214,8 +210,7 @@ Promise.all([api.getUser(), api.getCards()])
 		userInfo.setAvatar(userData);
 		userInfo.setId(userData);
 
-		cardList._renderedItems = cards;
-		cardList.renderItems();
+		cardList.renderItems(cards);
 	})
 	.catch(err => {
 		console.log(err)
