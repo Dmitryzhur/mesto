@@ -12,8 +12,8 @@ import FormValidator from "../components/FormValidator.js";
 import { objSelectors } from '../utils/utils.js';
 
 
-const popupProfile = document.querySelector('.popup_type_edit');
-const popupViewCard = document.querySelector('.popup_type_view-image');
+// const popupProfile = document.querySelector('.popup_type_edit');
+// const popupViewCard = document.querySelector('.popup_type_view-image');
 
 
 const buttonAdd = document.querySelector('.profile__add-button');
@@ -21,11 +21,11 @@ const buttonEdit = document.querySelector('.profile__edit-button');
 // const buttonDel = document.querySelector('.elements__element-trash-button');
 const buttonUpdateAvatar = document.querySelector('.profile__avatar-change');
 
-const inputName = popupProfile.querySelector('#input-name');
-const inputAbout = popupProfile.querySelector('#input-about');
+// const inputName = popupProfile.querySelector('#input-name');
+// const inputAbout = popupProfile.querySelector('#input-about');
 
-export const cardImage = popupViewCard.querySelector('.popup__image');
-export const cardDescription = popupViewCard.querySelector('.popup__description');
+// export const cardImage = popupViewCard.querySelector('.popup__image');
+// export const cardDescription = popupViewCard.querySelector('.popup__description');
 
 
 // Увеличение карточки на весь экран
@@ -173,10 +173,7 @@ enableValidation(objSelectors);
 // Обработчики
 buttonEdit.addEventListener('click', () => {
 	const startInputValue = userInfo.getUserInfo();
-	inputName.value = startInputValue.name;
-	inputAbout.value = startInputValue.about;
-	// Можно сделать метод setInputValues в классе PopupWithForm, который будет вставлять данные в инпуты:
-	// И не нужно будет искать эти инпуты в index.js и что-то вставлять в них при открытии профиля.
+	editProfilePopup.setInputValues(startInputValue);
 	editProfilePopup.openPopup();
 	formValidators['EditProfile'].resetValidation();
 });
