@@ -68,12 +68,24 @@ export default class Card {
 		});
 	}
 
+	_generateListUserLiked(likeList) {
+		const listUsersLike = [];
+		likeList.forEach(elem => {
+			listUsersLike.push(elem._id);
+		});
+		return listUsersLike;
+	}
+
 	// Создание карточки
 	createCard() {
 		this._cardTitle.textContent = this._cardItem.name;
 		this._cardImage.src = this._cardItem.link;
 		this._cardImage.alt = this._cardItem.name;
 		this._cardCountLikes.textContent = this._cardItem.likes.length;
+		this._listUsersLike = this._generateListUserLiked(this._likes);
+		if (this._listUsersLike.includes(this._user)) {
+			this._buttonLike.classList.add('elements__element-like-button_active');
+		}
 		this._setEventListeners();
 		return this._cardElement;
 	}

@@ -11,10 +11,8 @@ import FormValidator from "../components/FormValidator.js";
 // import { initialCards } from "../utils/constants.js";
 import { objSelectors } from '../utils/utils.js';
 
-
 // const popupProfile = document.querySelector('.popup_type_edit');
 // const popupViewCard = document.querySelector('.popup_type_view-image');
-
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
@@ -26,7 +24,6 @@ const buttonUpdateAvatar = document.querySelector('.profile__avatar-change');
 
 // export const cardImage = popupViewCard.querySelector('.popup__image');
 // export const cardDescription = popupViewCard.querySelector('.popup__description');
-
 
 // Увеличение карточки на весь экран
 const popupView = new PopupWithImage('.popup_type_view-image');
@@ -89,10 +86,17 @@ const userInfo = new UserInfo({
 // Добавляем управление тремя попапами с формами
 const popupNewPlace = new PopupWithForm({
 	callbackFunction: (data) => {
-		cardList.addItem(makeNewCard({ 
-			link: data['input-link-place'],
-			name: data['input-name-place']
-		}));
+		popupNewPlace.renderLoading(true)
+		api.addCard(data)
+			// .then(res => {
+			// 	debugger;
+			// })
+			.then(res => {
+				cardList.addItem(makeNewCard(res));
+			})
+			.finally(() => {
+				popupNewPlace.renderLoading(false);
+			})
 		popupNewPlace.closePopup();
 	}
 }, '.popup_type_add-element');
