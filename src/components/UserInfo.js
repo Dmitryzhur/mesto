@@ -10,7 +10,6 @@ export default class UserInfo {
 		const userInfoObj = {};
 		userInfoObj['name'] = this._elemName.textContent;
 		userInfoObj['about'] = this._elemAbout.textContent;
-		userInfoObj['avatar'] = this._elemAvatar.src;
 		return userInfoObj;
 	}
 
