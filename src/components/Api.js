@@ -74,10 +74,9 @@ export default class Api {
 	}
 
 	addLike(_id) {
-		return fetch(`${this._baseURL}/cards/${this._id}/likes`, {
+		return fetch(`${this._baseURL}/cards/${_id}/likes`, {
 			method: 'PUT',
 			headers: this._headers,
-			body: JSON.stringify(_id)
 		})
 			.then(this._checkResponseStatus)
 			.catch((err) => {

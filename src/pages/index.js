@@ -11,19 +11,19 @@ import FormValidator from "../components/FormValidator.js";
 // import { initialCards } from "../utils/constants.js";
 import { objSelectors } from '../utils/utils.js';
 
-const popupProfile = document.querySelector('.popup_type_edit');
-const popupViewCard = document.querySelector('.popup_type_view-image');
+// const popupProfile = document.querySelector('.popup_type_edit');
+// const popupViewCard = document.querySelector('.popup_type_view-image');
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
-const buttonDel = document.querySelector('.elements__element-trash-button');
+// const buttonDel = document.querySelector('.elements__element-trash-button');
 const buttonUpdateAvatar = document.querySelector('.profile__avatar-change');
 
-const inputName = popupProfile.querySelector('#input-name');
-const inputAbout = popupProfile.querySelector('#input-about');
+// const inputName = popupProfile.querySelector('#input-name');
+// const inputAbout = popupProfile.querySelector('#input-about');
 
-export const cardImage = popupViewCard.querySelector('.popup__image');
-export const cardDescription = popupViewCard.querySelector('.popup__description');
+// export const cardImage = popupViewCard.querySelector('.popup__image');
+// export const cardDescription = popupViewCard.querySelector('.popup__description');
 
 // Увеличение карточки на весь экран
 const popupView = new PopupWithImage('.popup_type_view-image');
@@ -38,6 +38,24 @@ const handleCardClickDelete = (card) => {
 	confirmDeletePopup.openPopup();
 };
 
+const handleLike = (card) => {
+	if (!card.isLiked()) {
+		api.addLike(card.getId())
+			.then((res) => {
+				card.updateCountLike(res);
+			})
+			.catch((err) => {
+				console.log(err);
+			})
+	} else {
+		api.deleteLike(card.getId())
+			.then((res) => {
+				card.updateCountLike(res);
+			})
+	}
+};
+
+
 // Получаем информацию по карточке 
 const getCardInfo = (popup, card) => {
 	popup.cardId = card._cardItem._id;
@@ -46,7 +64,7 @@ const getCardInfo = (popup, card) => {
 
 // Создание новой карточки
 function makeNewCard(item) {
-	const newCard = new Card(item, '#elements__element-template', { handleCardClick, handleCardClickDelete }, userInfo.userId);
+	const newCard = new Card(item, '#elements__element-template', { handleCardClick, handleCardClickDelete, handleLike }, userInfo.userId);
 	const card = newCard.createCard();
 	return card;
 };
@@ -90,6 +108,7 @@ popupNewPlace.setEventListeners();
 
 const editProfilePopup = new PopupWithForm({
 	callbackFunction: (data) => {
+		editProfilePopup.renderLoading(true)
 		api.editProfile(data)
 			// .then(res => {
 			// 	debugger;
@@ -98,6 +117,9 @@ const editProfilePopup = new PopupWithForm({
 				userInfo.setUserInfo(res);
 				editProfilePopup.closePopup();
 			})
+			.finally(() => {
+				editProfilePopup.renderLoading(false);
+			})
 	}
 }, '.popup_type_edit'
 );
@@ -105,6 +127,7 @@ editProfilePopup.setEventListeners();
 
 const popupUpdateAvatar = new PopupWithForm({
 	callbackFunction: (data) => {
+		popupUpdateAvatar.renderLoading(true)
 		api.editAvatar(data)
 			// .then(res => {
 			// 	debugger;
@@ -112,6 +135,9 @@ const popupUpdateAvatar = new PopupWithForm({
 			.then((res) => {
 				userInfo.setAvatar(res);
 				popupUpdateAvatar.closePopup();
+			})
+			.finally(() => {
+				popupUpdateAvatar.renderLoading(false);
 			})
 	}
 }, '.popup_type_update-avatar'
@@ -169,7 +195,7 @@ buttonUpdateAvatar.addEventListener('click', function () {
 	const startInputValue = userInfo.getUserInfo();
 	popupUpdateAvatar.setInputValues(startInputValue);
 	popupUpdateAvatar.openPopup();
-		formValidators['Update-Avatar'].resetValidation();
+	formValidators['Update-Avatar'].resetValidation();
 });
 
 const API_CONFIG = {
