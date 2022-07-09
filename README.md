@@ -1,8 +1,13 @@
 # Проект: Место
 Проект для изучения JS и закрепления освоенных технологий
+## Функциональность проекта
+- Изменение аватарки
+- Изменение информации о себе
+- Добавление и удаление карточки с названием и фотографией
+- Постановка и снятие лайка с карточки
+- Валидация всех форм
+- Работа с API
 
-#### :link: [Макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
-#### :link: [GitHub Pages](https://dmitryzhur.github.io/mesto/index.html)
 
 ## Технологии, использованные в проекте
 1. HTML + CSS
@@ -10,3 +15,10 @@
 3. БЭМ
 4. Flexbox и Grid
 5. JS ( ͡° ͜ʖ ͡°)
+6. ООП
+7. Webpack
+8. API
+
+## Ссылки
+#### :link: [Макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+#### :link: [GitHub Pages](https://dmitryzhur.github.io/mesto/index.html)

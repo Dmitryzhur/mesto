@@ -8,22 +8,11 @@ import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
-// import { initialCards } from "../utils/constants.js";
 import { objSelectors } from '../utils/utils.js';
-
-// const popupProfile = document.querySelector('.popup_type_edit');
-// const popupViewCard = document.querySelector('.popup_type_view-image');
 
 const buttonAdd = document.querySelector('.profile__add-button');
 const buttonEdit = document.querySelector('.profile__edit-button');
-// const buttonDel = document.querySelector('.elements__element-trash-button');
 const buttonUpdateAvatar = document.querySelector('.profile__avatar-change');
-
-// const inputName = popupProfile.querySelector('#input-name');
-// const inputAbout = popupProfile.querySelector('#input-about');
-
-// export const cardImage = popupViewCard.querySelector('.popup__image');
-// export const cardDescription = popupViewCard.querySelector('.popup__description');
 
 // Увеличение карточки на весь экран
 const popupView = new PopupWithImage('.popup_type_view-image');
@@ -44,17 +33,15 @@ const handleLike = (card) => {
 			.then((res) => {
 				card.updateCountLike(res);
 			})
-			.catch((err) => {
-				console.log(err);
-			})
+			.catch((err) => { console.log(err); })
 	} else {
 		api.deleteLike(card.getId())
 			.then((res) => {
 				card.updateCountLike(res);
 			})
+			.catch((err) => { console.log(err); })
 	}
 };
-
 
 // Получаем информацию по карточке 
 const getCardInfo = (popup, card) => {
@@ -88,16 +75,14 @@ const popupNewPlace = new PopupWithForm({
 	callbackFunction: (data) => {
 		popupNewPlace.renderLoading(true)
 		api.addCard(data)
-			// .then(res => {
-			// 	debugger;
-			// })
 			.then(res => {
 				cardList.addItem(makeNewCard(res));
+				popupNewPlace.closePopup();
 			})
+			.catch((err) => { console.log(err); })
 			.finally(() => {
 				popupNewPlace.renderLoading(false);
 			})
-		popupNewPlace.closePopup();
 	}
 }, '.popup_type_add-element');
 popupNewPlace.setEventListeners();
@@ -106,13 +91,11 @@ const editProfilePopup = new PopupWithForm({
 	callbackFunction: (data) => {
 		editProfilePopup.renderLoading(true)
 		api.editProfile(data)
-			// .then(res => {
-			// 	debugger;
-			// })
 			.then((res) => {
 				userInfo.setUserInfo(res);
 				editProfilePopup.closePopup();
 			})
+			.catch((err) => { console.log(err); })
 			.finally(() => {
 				editProfilePopup.renderLoading(false);
 			})
@@ -125,13 +108,11 @@ const popupUpdateAvatar = new PopupWithForm({
 	callbackFunction: (data) => {
 		popupUpdateAvatar.renderLoading(true)
 		api.editAvatar(data)
-			// .then(res => {
-			// 	debugger;
-			// })
 			.then((res) => {
 				userInfo.setAvatar(res);
 				popupUpdateAvatar.closePopup();
 			})
+			.catch((err) => { console.log(err); })
 			.finally(() => {
 				popupUpdateAvatar.renderLoading(false);
 			})
@@ -144,13 +125,11 @@ const confirmDeletePopup = new PopupWithConfirm({
 	callbackFunction: (data) => {
 		confirmDeletePopup.renderLoading(true);
 		api.delCard(data.cardId)
-			// .then(res => {
-			// 	debugger;
-			// })
 			.then(() => {
 				data.delCard.remove();
 				confirmDeletePopup.closePopup();
 			})
+			.catch((err) => { console.log(err); })
 			.finally(() => {
 				confirmDeletePopup.renderLoading(false);
 			})
@@ -173,21 +152,20 @@ const enableValidation = (config) => {
 
 enableValidation(objSelectors);
 
-
 // Обработчики
-buttonEdit.addEventListener('click', () => {
+buttonEdit.addEventListener('click', function openProfilePopup() {
 	const startInputValue = userInfo.getUserInfo();
 	editProfilePopup.setInputValues(startInputValue);
 	editProfilePopup.openPopup();
 	formValidators['EditProfile'].resetValidation();
 });
 
-buttonAdd.addEventListener('click', function () {
+buttonAdd.addEventListener('click', function openNewPlacePopup() {
 	popupNewPlace.openPopup();
 	formValidators['NewPlace'].resetValidation();
 });
 
-buttonUpdateAvatar.addEventListener('click', function () {
+buttonUpdateAvatar.addEventListener('click', function openUpdateAvatarPopup() {
 	const startInputValue = userInfo.getUserInfo();
 	popupUpdateAvatar.setInputValues(startInputValue);
 	popupUpdateAvatar.openPopup();
@@ -212,6 +190,4 @@ Promise.all([api.getUser(), api.getCards()])
 
 		cardList.renderItems(cards);
 	})
-	.catch(err => {
-		console.log(err)
-	});
+	.catch((err) => { console.log(err); })

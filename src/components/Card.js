@@ -33,6 +33,7 @@ export default class Card {
 	// Удаление карточки
 	deleteCard() {
 		this._cardElement.remove();
+		this._cardElement = null;
 	}
 
 	_getTemplate() {

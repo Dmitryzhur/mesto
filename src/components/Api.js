@@ -12,12 +12,6 @@ export default class Api {
 			headers: this._headers,
 		})
 			.then(this._checkResponseStatus)
-			.catch((err) => {
-				console.log(err);
-			})
-		// .then(res => {
-		// 	debugger;
-		// })
 	}
 
 	getUser() {
@@ -26,9 +20,6 @@ export default class Api {
 			headers: this._headers,
 		})
 			.then(this._checkResponseStatus)
-			.catch((err) => {
-				console.log(err);
-			})
 	}
 
 	editProfile(data) {
@@ -42,9 +33,6 @@ export default class Api {
 		},
 		)
 			.then(this._checkResponseStatus)
-			.catch((err) => {
-				console.log(err);
-			})
 	}
 
 	addCard(data) {
@@ -57,9 +45,6 @@ export default class Api {
             })
 		})
 			.then(this._checkResponseStatus)
-			.catch((err) => {
-				console.log(err);
-			})
 	}
 
 	delCard(_id) {
@@ -68,9 +53,6 @@ export default class Api {
 			headers: this._headers,
 		})
 			.then(this._checkResponseStatus)
-			.catch((err) => {
-				console.log(err);
-			})
 	}
 
 	addLike(_id) {
@@ -79,9 +61,6 @@ export default class Api {
 			headers: this._headers,
 		})
 			.then(this._checkResponseStatus)
-			.catch((err) => {
-				console.log(err);
-			})
 	}
 
 	deleteLike(_id) {
@@ -90,9 +69,6 @@ export default class Api {
 			headers: this._headers,
 		})
 			.then(this._checkResponseStatus)
-			.catch((err) => {
-				console.log(err);
-			})
 	}
 
 	editAvatar(data) {
@@ -105,9 +81,6 @@ export default class Api {
 		},
 		)
 			.then(this._checkResponseStatus)
-			.catch((err) => {
-				console.log(err);
-			})
 	}
 
 	_checkResponseStatus(res) {

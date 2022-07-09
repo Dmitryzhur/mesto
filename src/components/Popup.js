@@ -1,4 +1,3 @@
-// import { cardImage, cardDescription } from "../pages/index.js";
 export default class Popup {
 	constructor(selector) {
 		this._popup = document.querySelector(selector);
